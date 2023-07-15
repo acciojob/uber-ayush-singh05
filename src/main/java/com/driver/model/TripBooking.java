@@ -1,46 +1,34 @@
 package com.driver.model;
 
 import javax.persistence.*;
+
 @Entity
+@Table
 public class TripBooking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int tripId;
-
+    private int tripBookingId;
     private String fromLocation;
     private String toLocation;
     private int distanceInKm;
     @Enumerated(EnumType.STRING)
-    private TripStatus tripStatus;
-    int bill;
-    @ManyToOne
-            @JoinColumn
-    private Customer customer;
+    private TripStatus status;
+    private int bill;
 
     @ManyToOne
-            @JoinColumn
+    @JoinColumn
     private Driver driver;
 
-    public TripBooking() {
+    @ManyToOne
+    @JoinColumn
+    private Customer customer;
+
+    public int getTripBookingId() {
+        return tripBookingId;
     }
 
-    public TripBooking(int tripId, String fromLocation, String toLocation, int distanceInKm, TripStatus tripStatus, int bill, Customer customer, Driver driver) {
-        this.tripId = tripId;
-        this.fromLocation = fromLocation;
-        this.toLocation = toLocation;
-        this.distanceInKm = distanceInKm;
-        this.tripStatus = tripStatus;
-        this.bill = bill;
-        this.customer = customer;
-        this.driver = driver;
-    }
-
-    public int getTripId() {
-        return tripId;
-    }
-
-    public void setTripId(int tripId) {
-        this.tripId = tripId;
+    public void setTripBookingId(int tripBookingId) {
+        this.tripBookingId = tripBookingId;
     }
 
     public String getFromLocation() {
@@ -67,12 +55,12 @@ public class TripBooking {
         this.distanceInKm = distanceInKm;
     }
 
-    public TripStatus getTripStatus() {
-        return tripStatus;
+    public TripStatus getStatus() {
+        return status;
     }
 
-    public void setTripStatus(TripStatus tripStatus) {
-        this.tripStatus = tripStatus;
+    public void setStatus(TripStatus status) {
+        this.status = status;
     }
 
     public int getBill() {
@@ -83,19 +71,19 @@ public class TripBooking {
         this.bill = bill;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
     public Driver getDriver() {
         return driver;
     }
 
     public void setDriver(Driver driver) {
         this.driver = driver;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

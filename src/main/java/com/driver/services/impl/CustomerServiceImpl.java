@@ -45,7 +45,7 @@ public class CustomerServiceImpl implements CustomerService {
 		Driver driver = null;
 		List<Driver>allDriver = driverRepository2.findAll();
 		for(Driver drv : allDriver) {
-			if(drv.getCab().isAvaliable()) {
+			if(drv.getCab().getAvailable()) {
 				if (driver == null || driver.getDriverId() > drv.getDriverId()) {
 					driver = drv;
 				}
@@ -60,8 +60,8 @@ public class CustomerServiceImpl implements CustomerService {
 		tripBooking.setToLocation(toLocation);
 		tripBooking.setCustomer(customer);
 		tripBooking.setDriver(driver);
-		driver.getCab().setAvaliable(false);
-		tripBooking.setTripStatus(TripStatus.CONFIRMED);
+		driver.getCab().setAvailable(false);
+		tripBooking.setStatus(TripStatus.CONFIRMED);
 		tripBooking.setBill(driver.getCab().getPerKmRate() * distanceInKm);
 
 		customer.getTripBookingList().add(tripBooking);
@@ -77,11 +77,11 @@ public class CustomerServiceImpl implements CustomerService {
 	public void cancelTrip(Integer tripId){
 		//Cancel the trip having given trip Id and update TripBooking attributes accordingly
 		TripBooking tripBooking = tripBookingRepository2.findById(tripId).get();
-		tripBooking.setTripStatus(TripStatus.CANCELED);
+		tripBooking.setStatus(TripStatus.CANCELED);
 		tripBooking.setBill(0);
 
 		Driver driver = tripBooking.getDriver();
-		driver.getCab().setAvaliable(true);
+		driver.getCab().setAvailable(true);
 		driverRepository2.save(driver);
 		tripBookingRepository2.save(tripBooking);
 	}
@@ -90,9 +90,9 @@ public class CustomerServiceImpl implements CustomerService {
 	public void completeTrip(Integer tripId){
 		//Complete the trip having given trip Id and update TripBooking attributes accordingly
 		TripBooking tripBooking = tripBookingRepository2.findById(tripId).get();
-		tripBooking.setTripStatus(TripStatus.COMPLETED);
+		tripBooking.setStatus(TripStatus.COMPLETED);
 		Driver driver = tripBooking.getDriver();
-		driver.getCab().setAvaliable(true);
+		driver.getCab().setAvailable(true);
 		driverRepository2.save(driver);
 		tripBookingRepository2.save(tripBooking);
 	}
