@@ -5,6 +5,7 @@ import com.driver.model.Customer;
 import com.driver.model.Driver;
 import com.driver.repository.DriverRepository;
 import com.driver.services.AdminService;
+import com.driver.services.impl.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +18,8 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 	@Autowired
-	AdminService adminService;
-	@Autowired
-	DriverRepository driverRepository;
+	AdminServiceImpl adminService;
+
 	@PostMapping("/register")
 	public ResponseEntity<Void> registerAdmin(@RequestBody Admin admin){
 		adminService.adminRegister(admin);
