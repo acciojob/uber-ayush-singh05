@@ -5,30 +5,30 @@ import javax.persistence.*;
 public class TripBooking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int tripId;
+    private int tripId;
 
-    String fromLocation;
-    String toLocation;
-    int distance;
+    private String fromLocation;
+    private String toLocation;
+    private int distanceInKm;
     @Enumerated(EnumType.STRING)
-    TripStatus tripStatus;
+    private TripStatus tripStatus;
     int bill;
     @ManyToOne
             @JoinColumn
-    Customer customer;
+    private Customer customer;
 
     @ManyToOne
             @JoinColumn
-    Driver driver;
+    private Driver driver;
 
     public TripBooking() {
     }
 
-    public TripBooking(int tripId, String fromLocation, String toLocation, int distance, TripStatus tripStatus, int bill, Customer customer, Driver driver) {
+    public TripBooking(int tripId, String fromLocation, String toLocation, int distanceInKm, TripStatus tripStatus, int bill, Customer customer, Driver driver) {
         this.tripId = tripId;
         this.fromLocation = fromLocation;
         this.toLocation = toLocation;
-        this.distance = distance;
+        this.distanceInKm = distanceInKm;
         this.tripStatus = tripStatus;
         this.bill = bill;
         this.customer = customer;
@@ -59,12 +59,12 @@ public class TripBooking {
         this.toLocation = toLocation;
     }
 
-    public int getDistance() {
-        return distance;
+    public int getDistanceInKm() {
+        return distanceInKm;
     }
 
-    public void setDistance(int distance) {
-        this.distance = distance;
+    public void setDistanceInKm(int distanceInKm) {
+        this.distanceInKm = distanceInKm;
     }
 
     public TripStatus getTripStatus() {

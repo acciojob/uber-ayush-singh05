@@ -6,20 +6,20 @@ import javax.persistence.*;
 public class Cab {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
-    int perKmRate;
-    boolean bookingAvailable;
+    private int id;
+    private int perKmRate;
+    private boolean avaliable;
     @OneToOne
     @JoinColumn
-    Driver driver;
+    private Driver driver;
 
     public Cab() {
     }
 
-    public Cab(int id, int perKmRate, boolean bookingAvailable, Driver driver) {
+    public Cab(int id, int perKmRate, boolean avaliable, Driver driver) {
         this.id = id;
         this.perKmRate = perKmRate;
-        this.bookingAvailable = bookingAvailable;
+        this.avaliable = avaliable;
         this.driver = driver;
     }
 
@@ -39,12 +39,12 @@ public class Cab {
         this.perKmRate = perKmRate;
     }
 
-    public boolean isBookingAvailable() {
-        return bookingAvailable;
+    public boolean isAvaliable() {
+        return avaliable;
     }
 
-    public void setBookingAvailable(boolean bookingAvailable) {
-        this.bookingAvailable = bookingAvailable;
+    public void setAvaliable(boolean avaliable) {
+        this.avaliable = avaliable;
     }
 
     public Driver getDriver() {

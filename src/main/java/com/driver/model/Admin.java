@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    int adminId;
     String userName;
     String password;
 
@@ -16,17 +16,17 @@ public class Admin {
     }
 
     public Admin(int id, String userName, String password) {
-        this.id = id;
+        this.adminId = id;
         this.userName = userName;
         this.password = password;
     }
 
     public int getId() {
-        return id;
+        return adminId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.adminId = id;
     }
 
     public String getUserName() {
